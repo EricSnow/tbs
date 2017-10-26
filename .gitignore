@@ -10,3 +10,8 @@
 /Content/obj
 /Windows/bin
 /Windows/obj
+/.vs/TBS/v15/Server/sqlite3/storage.ide-wal
+/.vs/TBS/v15/Server/sqlite3/storage.ide-shm
+/.vs/TBS/v15/Server/sqlite3/storage.ide
+/.vs/TBS/v15/Server/sqlite3/db.lock
+/.vs/TBS/v15/Server/sqlite3

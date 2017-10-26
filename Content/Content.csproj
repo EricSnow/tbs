@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Content</RootNamespace>
+    <AssemblyName>Content</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MSBuildExtensionsPath)\MonoGame\v3.0\Tools\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Content.Pipeline">
+      <HintPath>$(MSBuildExtensionsPath)\MonoGame\v3.0\Tools\MonoGame.Framework.Content.Pipeline.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Settings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Buildings\advancewarsdaysofruinds.png" />
+    <Content Include="Buildings\Airport.png" />
+    <Content Include="Buildings\City.png" />
+    <Content Include="Buildings\Factory.png" />
+    <Content Include="Buildings\Headquarter.png" />
+    <Content Include="Buildings\Port.png" />
+    <Content Include="Capturing.png" />
+    <Content Include="Fonts\Life.png" />
+    <Content Include="Menu\Background.jpg" />
+    <Content Include="Menu\Blank.png" />
+    <Content Include="Menu\Gradient.png" />
+    <Content Include="Popup\Back.png" />
+    <Content Include="Popup\Left.png" />
+    <Content Include="Popup\LeftOn.png" />
+    <Content Include="Popup\Mid.png" />
+    <Content Include="Popup\MidOn.png" />
+    <Content Include="Popup\Right.png" />
+    <Content Include="Popup\RightOn.png" />
+    <Content Include="Star.png" />
+    <Content Include="Terrains\Big\Attack.png" />
+    <Content Include="Terrains\Big\Cursor.png" />
+    <Content Include="Terrains\Big\Mountain.png" />
+    <Content Include="Terrains\Big\Move.png" />
+    <Content Include="Terrains\Big\Plains.png" />
+    <Content Include="Terrains\Big\Road.png" />
+    <Content Include="Terrains\Big\Ruins.png" />
+    <Content Include="Terrains\Big\Sea.png" />
+    <Content Include="Terrains\Big\Wasteland.png" />
+    <Content Include="Terrains\Big\Wood.png" />
+    <Content Include="Terrains\Medium\Attack.png" />
+    <Content Include="Terrains\Medium\Beach.png" />
+    <Content Include="Terrains\Medium\Bridge.png" />
+    <Content Include="Terrains\Medium\Cursor.png" />
+    <Content Include="Terrains\Medium\Mist.png" />
+    <Content Include="Terrains\Medium\Mountain.png" />
+    <Content Include="Terrains\Medium\Move.png" />
+    <Content Include="Terrains\Medium\Plains.png" />
+    <Content Include="Terrains\Medium\Reef.png" />
+    <Content Include="Terrains\Medium\River.png" />
+    <Content Include="Terrains\Medium\Road.png" />
+    <Content Include="Terrains\Medium\RoughSea.png" />
+    <Content Include="Terrains\Medium\Ruins.png" />
+    <Content Include="Terrains\Medium\Sea.png" />
+    <Content Include="Terrains\Medium\Wasteland.png" />
+    <Content Include="Terrains\Medium\Wood.png" />
+    <Content Include="Units\Big\AntiAir.png" />
+    <Content Include="Units\Big\AntiTank.png" />
+    <Content Include="Units\Big\Artillery.png" />
+    <Content Include="Units\Big\Battleship.png" />
+    <Content Include="Units\Big\Bazooka1.png" />
+    <Content Include="Units\Big\Bazooka2.png" />
+    <Content Include="Units\Big\Bomber.png" />
+    <Content Include="Units\Big\Carrier.png" />
+    <Content Include="Units\Big\Cruiser.png" />
+    <Content Include="Units\Big\Duster.png" />
+    <Content Include="Units\Big\Fighter.png" />
+    <Content Include="Units\Big\FightHeli.png" />
+    <Content Include="Units\Big\Flare.png" />
+    <Content Include="Units\Big\Gunboat.png" />
+    <Content Include="Units\Big\Inf1.png" />
+    <Content Include="Units\Big\Inf2.png" />
+    <Content Include="Units\Big\Lander.png" />
+    <Content Include="Units\Big\MediumTank.png" />
+    <Content Include="Units\Big\Missiles.png" />
+    <Content Include="Units\Big\Moto1.png" />
+    <Content Include="Units\Big\Moto2.png" />
+    <Content Include="Units\Big\Recon.png" />
+    <Content Include="Units\Big\Rig.png" />
+    <Content Include="Units\Big\Rockets.png" />
+    <Content Include="Units\Big\Seaplane.png" />
+    <Content Include="Units\Big\Submarine.png" />
+    <Content Include="Units\Big\Tank.png" />
+    <Content Include="Units\Big\TransHeli.png" />
+    <Content Include="Units\Big\WarTank.png" />
+    <Content Include="Units\blue.png" />
+    <Content Include="Units\Preview\AntiAir.png" />
+    <Content Include="Units\Preview\AntiTank.png" />
+    <Content Include="Units\Preview\Artillery.png" />
+    <Content Include="Units\Preview\Battleship.png" />
+    <Content Include="Units\Preview\Bazooka1.png" />
+    <Content Include="Units\Preview\Bazooka2.png" />
+    <Content Include="Units\Preview\Bomber.png" />
+    <Content Include="Units\Preview\Carrier.png" />
+    <Content Include="Units\Preview\Cruiser.png" />
+    <Content Include="Units\Preview\Duster.png" />
+    <Content Include="Units\Preview\Fighter.png" />
+    <Content Include="Units\Preview\FightHeli.png" />
+    <Content Include="Units\Preview\Flare.png" />
+    <Content Include="Units\Preview\Gunboat.png" />
+    <Content Include="Units\Preview\Inf1.png" />
+    <Content Include="Units\Preview\Inf2.png" />
+    <Content Include="Units\Preview\Lander.png" />
+    <Content Include="Units\Preview\MediumTank.png" />
+    <Content Include="Units\Preview\Missiles.png" />
+    <Content Include="Units\Preview\Moto1.png" />
+    <Content Include="Units\Preview\Moto2.png" />
+    <Content Include="Units\Preview\Recon.png" />
+    <Content Include="Units\Preview\Rig.png" />
+    <Content Include="Units\Preview\Rockets.png" />
+    <Content Include="Units\Preview\Seaplane.png" />
+    <Content Include="Units\Preview\Submarine.png" />
+    <Content Include="Units\Preview\Tank.png" />
+    <Content Include="Units\Preview\TransHeli.png" />
+    <Content Include="Units\Preview\Wartank.png" />
+    <Content Include="Units\Small\AntiAir.png" />
+    <Content Include="Units\Small\AntiTank.png" />
+    <Content Include="Units\Small\Artillery.png" />
+    <Content Include="Units\Small\Battleship.png" />
+    <Content Include="Units\Small\Bazooka1.png" />
+    <Content Include="Units\Small\Bazooka2.png" />
+    <Content Include="Units\Small\Bomber.png" />
+    <Content Include="Units\Small\Carrier.png" />
+    <Content Include="Units\Small\Cruiser.png" />
+    <Content Include="Units\Small\Duster.png" />
+    <Content Include="Units\Small\Fighter.png" />
+    <Content Include="Units\Small\FightHeli.png" />
+    <Content Include="Units\Small\Flare.png" />
+    <Content Include="Units\Small\Gunboat.png" />
+    <Content Include="Units\Small\Inf1.png" />
+    <Content Include="Units\Small\Inf2.png" />
+    <Content Include="Units\Small\Lander.png" />
+    <Content Include="Units\Small\MediumTank.png" />
+    <Content Include="Units\Small\Missiles.png" />
+    <Content Include="Units\Small\Moto1.png" />
+    <Content Include="Units\Small\Moto2.png" />
+    <Content Include="Units\Small\Recon.png" />
+    <Content Include="Units\Small\Rig.png" />
+    <Content Include="Units\Small\Rockets.png" />
+    <Content Include="Units\Small\Seaplane.png" />
+    <Content Include="Units\Small\Submarine.png" />
+    <Content Include="Units\Small\Tank.png" />
+    <Content Include="Units\Small\TransHeli.png" />
+    <Content Include="Units\Small\WarTank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fonts\Debug.spritefont" />
+    <None Include="Fonts\Game.spritefont" />
+    <None Include="Fonts\Menu.spritefont" />
+    <None Include="Fonts\Popup.spritefont" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
