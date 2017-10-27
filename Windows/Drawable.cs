@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TBS
+namespace TBS.Windows
 {
-	abstract class Drawable
+    internal abstract class Drawable
 	{
 		private bool _animating;
 		private Vector2 _animatingFrom;

@@ -1,4 +1,4 @@
-﻿namespace TBS.Settings
+﻿namespace TBS.Windows.Settings
 {
 	public class GeneralSettings : SettingsBase
 	{

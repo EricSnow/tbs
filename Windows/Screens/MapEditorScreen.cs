@@ -6,16 +6,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using TBS.ScreenManager;
+using TBS.Windows.ScreenManager;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
-    class MapEditorScreen : GameScreen
+    internal class MapEditorScreen : GameScreen
     {
-        ContentManager _content;
-		float _pauseAlpha;
+        private ContentManager _content;
+        private float _pauseAlpha;
 
-		private const int CameraSpeed = 5;
+		private const int cameraSpeed = 5;
 		private readonly Vector2 _nullCursor;
 
 		private Sprite _cursor, _move, _attack;
@@ -254,12 +254,12 @@ namespace TBS.Screens
 		    // Context menu
 		    var oldShow = _showContextMenu;
 		    var noSelect = false;
-		    if (_showContextMenu && Souris.Get().Clicked(MouseButton.Left))
+		    if (_showContextMenu && GameMouse.Get().Clicked(MouseButton.Left))
 		    {
 				var rect = new Rectangle(_contextMenuPos.X + 2 - (int)_camera.X, _contextMenuPos.Y + 2 - (int)_camera.Y, _contextMaxWidth + 2 + _popupLeft.Width + _popupRight.Width, 16 * _contextMenus.Length);
-			    if (rect.Contains(Souris.Get().Position))
+			    if (rect.Contains(GameMouse.Get().Position))
 			    {
-				    var index = (int)Math.Floor((double)(Souris.Get().Y - rect.Y) / 16f);
+				    var index = (int)Math.Floor((double)(GameMouse.Get().Y - rect.Y) / 16f);
 					var selected = _contextMenus[index];
 			    }
 				_showContextMenu = false;
@@ -269,15 +269,15 @@ namespace TBS.Screens
 			// Update cursor position
 	        if (!_showContextMenu)
 	        {
-		        var curPos = new Vector2((int)((Souris.Get().X + _camera.X) / _gridWidth), (int)((Souris.Get().Y + _camera.Y) / _gridHeight));
-		        _cursorPos = Souris.Get().X + _camera.X >= 0 && Souris.Get().Y + _camera.Y >= 0
+		        var curPos = new Vector2((int)((GameMouse.Get().X + _camera.X) / _gridWidth), (int)((GameMouse.Get().Y + _camera.Y) / _gridHeight));
+		        _cursorPos = GameMouse.Get().X + _camera.X >= 0 && GameMouse.Get().Y + _camera.Y >= 0
 		                     && curPos.X < _mapWidth && curPos.Y < _mapHeight
 						   ? curPos
 						   : _nullCursor;
 	        }
 
 		    // Mouse click
-			if (Souris.Get().Clicked(MouseButton.Left) && _cursorPos != _nullCursor && !noSelect)
+			if (GameMouse.Get().Clicked(MouseButton.Left) && _cursorPos != _nullCursor && !noSelect)
 	        {
 				var unitUnder = _units.FirstOrDefault(t =>
 					Math.Abs(t.Position.X - _cursorPos.X) < 0.1
@@ -323,7 +323,7 @@ namespace TBS.Screens
 					movement.Y--;
 				if (Clavier.Get().Pressed(Keys.Down))
 					movement.Y++;
-				_camera += movement * CameraSpeed;
+				_camera += movement * cameraSpeed;
             }
         }
 
@@ -423,7 +423,7 @@ namespace TBS.Screens
 			{
 				for (var i = 0; i < _contextMenus.Length; ++i)
 				{
-					var on = new Rectangle(_contextMenuPos.X + 2 - (int)_camera.X, _contextMenuPos.Y + 2 + 16 * i - (int)_camera.Y, _contextMaxWidth + 2 + _popupLeft.Width + _popupRight.Width, 16).Contains(Souris.Get().Position);
+					var on = new Rectangle(_contextMenuPos.X + 2 - (int)_camera.X, _contextMenuPos.Y + 2 + 16 * i - (int)_camera.Y, _contextMaxWidth + 2 + _popupLeft.Width + _popupRight.Width, 16).Contains(GameMouse.Get().Position);
 					var dec = on ? 0.001f : 0;
 					(on ? _popupLeftOn : _popupLeft).Draw(spriteBatch, 0.94f + dec, new Vector2(_contextMenuPos.X, _contextMenuPos.Y + 16 * i) - _camera);
 					for (var j = 0; j < _contextMaxWidth + 2; ++j)
@@ -450,7 +450,7 @@ namespace TBS.Screens
 			_contextMenuContext = context;
 			_contextMenus = menus;
 			_showContextMenu = true;
-			_contextMenuPos = new Point(Souris.Get().X + (int)_camera.X, Souris.Get().Y + (int)_camera.Y);
+			_contextMenuPos = new Point(GameMouse.Get().X + (int)_camera.X, GameMouse.Get().Y + (int)_camera.Y);
 
 			_contextMaxWidth = 0;
 			foreach (var m in menus)

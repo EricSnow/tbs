@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class Building
+    internal class Building
 	{
 		public string Type { get; set; }
 		private int _previousCaptureStatus;
@@ -12,8 +12,8 @@ namespace TBS
 		private Player _player;
 		public Player Player
 		{
-			get { return _player; }
-			set
+			get => _player;
+		    set
 			{
 				if (_player != null)
 					_player.Buildings.Remove(this);

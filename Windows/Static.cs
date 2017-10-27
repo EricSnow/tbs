@@ -1,6 +1,6 @@
-﻿namespace TBS
+﻿namespace TBS.Windows
 {
-	class Static
+    internal class Static
 	{
 		public static GameStateManagementGame Game { get; set; }
 	}

@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
-    class MainMenuScreen : MenuScreen
+    internal class MainMenuScreen : MenuScreen
     {
         public MainMenuScreen()
             : base("Main Menu")
@@ -26,17 +26,17 @@ namespace TBS.Screens
             MenuEntries.Add(exitMenuEntry);
         }
 
-		void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        private void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			ScreenManager.AddScreen(new GameSelectScreen(), e.PlayerIndex);
 		}
 
-		void MapEditorMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        private void MapEditorMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			ScreenManager.AddScreen(new MapEditorMenuScreen(), e.PlayerIndex);
 		}
 
-        void OptionsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        private void OptionsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new OptionsMenuScreen(), e.PlayerIndex);
         }
@@ -52,7 +52,7 @@ namespace TBS.Screens
             ScreenManager.AddScreen(confirmExitMessageBox, playerIndex);
         }
 
-        void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
+        private void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.Game.Exit();
         }

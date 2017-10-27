@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
-using TBS.Screens;
+using TBS.Windows.Screens;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class Clavier
+    internal class Clavier
 	{
 		private static Clavier _instance;
 		public static Clavier Get()
@@ -20,8 +20,8 @@ namespace TBS
 		private bool _getText;
 		public bool GetText
 		{
-			get { return _getText; }
-			set
+			get => _getText;
+		    set
 			{
 				TextEntered = null;
 				Text = "";

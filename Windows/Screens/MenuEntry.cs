@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
     /// <summary>
     /// Helper class represents a single entry in a MenuScreen. By default this
@@ -10,14 +10,12 @@ namespace TBS.Screens
     /// entries in different ways. This also provides an event that will be raised
     /// when the menu entry is selected.
     /// </summary>
-    class MenuEntry
+    internal class MenuEntry
     {
-        #region Fields
-
         /// <summary>
         /// The text rendered for this entry.
         /// </summary>
-        string _text;
+        private string _text;
 
         /// <summary>
         /// Tracks a fading selection effect on the entry.
@@ -25,26 +23,21 @@ namespace TBS.Screens
         /// <remarks>
         /// The entries transition out of the selection effect when they are deselected.
         /// </remarks>
-        float _selectionFade;
+        private float _selectionFade;
 
         /// <summary>
         /// The position at which the entry is drawn. This is set by the MenuScreen
         /// each frame in Update.
         /// </summary>
-        Vector2 _position;
-
-        #endregion
-
-        #region Properties
-
+        private Vector2 _position;
 
         /// <summary>
         /// Gets or sets the text of this menu entry.
         /// </summary>
         public string Text
         {
-            get { return _text; }
-            set { _text = value; }
+            get => _text;
+            set => _text = value;
         }
 
 
@@ -53,17 +46,11 @@ namespace TBS.Screens
         /// </summary>
         public Vector2 Position
         {
-            get { return _position; }
-            set { _position = value; }
+            get => _position;
+            set => _position = value;
         }
 
-
-        #endregion
-
-		#region Events
-
-
-		/// <summary>
+        /// <summary>
 		/// Event raised when the menu entry is selected.
 		/// </summary>
 		public event EventHandler<PlayerIndexEventArgs> Selected;
@@ -90,12 +77,6 @@ namespace TBS.Screens
 				Unfocus(this, new PlayerIndexEventArgs(playerIndex));
 		}
 
-
-        #endregion
-
-        #region Initialization
-
-
         /// <summary>
         /// Constructs a new menu entry with the specified text.
         /// </summary>
@@ -103,12 +84,6 @@ namespace TBS.Screens
         {
             _text = text;
         }
-
-
-        #endregion
-
-        #region Update and Draw
-
 
         /// <summary>
         /// Updates the menu entry.
@@ -182,8 +157,5 @@ namespace TBS.Screens
         {
             return (int)screen.ScreenManager.Font.MeasureString(Text).X;
         }
-
-
-        #endregion
     }
 }

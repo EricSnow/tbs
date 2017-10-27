@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class Sprite
+    internal class Sprite
 	{
 		public Texture2D Texture { get; private set; }
 		public int Width { get; private set; }

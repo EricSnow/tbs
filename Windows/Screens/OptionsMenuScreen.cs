@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 using System.Windows.Forms;
+using Microsoft.Xna.Framework;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
 	internal class OptionsMenuScreen : MenuScreen
 	{
@@ -12,7 +12,7 @@ namespace TBS.Screens
 		private readonly MenuEntry _fullScreenMenuEntry;
 		private readonly MenuEntry _resolutionMenuEntry;
 
-		private static readonly string[] Languages = {"English"};
+		private static readonly string[] languages = {"English"};
 		private static int _currentLanguage;
 		private static bool _fullScreen;
 
@@ -91,7 +91,7 @@ namespace TBS.Screens
 			MenuEntries.Add(back);
 		}
 
-		void BackMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+	    private void BackMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			// Save settings
 			var manager = new Settings.SettingsManager();
@@ -105,13 +105,13 @@ namespace TBS.Screens
 			OnCancel(sender, e);
 		}
 
-		void LanguageMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+	    private void LanguageMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
-			_currentLanguage = (_currentLanguage + 1) % Languages.Length;
+			_currentLanguage = (_currentLanguage + 1) % languages.Length;
 			SetMenuEntryText();
 		}
 
-		void ResolutionMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+	    private void ResolutionMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			_currentResolution = (_currentResolution + 1) % _resolutions.Count;
 
@@ -128,7 +128,7 @@ namespace TBS.Screens
 			SetMenuEntryText();
 		}
 
-		void FullScreenMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+	    private void FullScreenMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			_fullScreen = !_fullScreen;
 
@@ -159,9 +159,9 @@ namespace TBS.Screens
 			SetMenuEntryText();
 		}
 
-		void SetMenuEntryText()
+	    private void SetMenuEntryText()
 		{
-			_languageMenuEntry.Text = "Language: " + Languages[_currentLanguage];
+			_languageMenuEntry.Text = "Language: " + languages[_currentLanguage];
 			_fullScreenMenuEntry.Text = "Full screen: " + (_fullScreen ? "True" : "False");
 			_resolutionMenuEntry.Text = "Resolution: " + _resolutions[_currentResolution].X + "x" + _resolutions[_currentResolution].Y;
 		}

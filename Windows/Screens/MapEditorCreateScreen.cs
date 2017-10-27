@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
-	class MapEditorCreateScreen : MenuScreen
+    internal class MapEditorCreateScreen : MenuScreen
 	{
 		private string _mapName = "";
 		private int _mapWidth = 5, _mapHeight = 5;
@@ -39,19 +39,21 @@ namespace TBS.Screens
 			AddMenuEntry(back);
 		}
 
-		void MapWidthMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+	    private void MapWidthMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			Clavier.Get().GetText = false;
 			_mapWidth = (_mapWidth - 5 + 1) % 26 + 5;
 			SetMenuEntryText();
 		}
-		void MapHeightMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+
+	    private void MapHeightMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			Clavier.Get().GetText = false;
 			_mapHeight = (_mapHeight - 5 + 1) % 16 + 5;
 			SetMenuEntryText();
 		}
-		void MapNameMenuEntryFocus(object sender, PlayerIndexEventArgs e)
+
+	    private void MapNameMenuEntryFocus(object sender, PlayerIndexEventArgs e)
 		{
 			Clavier.Get().GetText = true;
 			Clavier.Get().Text = _mapName;
@@ -59,12 +61,12 @@ namespace TBS.Screens
 			SetMenuEntryText();
 		}
 
-		static void MapNameMenuEntryUnfocus(object sender, PlayerIndexEventArgs e)
+	    private static void MapNameMenuEntryUnfocus(object sender, PlayerIndexEventArgs e)
 		{
 			Clavier.Get().GetText = false;
 		}
 
-		void SetMenuEntryText(object sender = null, PlayerIndexEventArgs e = null)
+	    private void SetMenuEntryText(object sender = null, PlayerIndexEventArgs e = null)
 		{
 			if (Clavier.Get().GetText)
 				_mapName = Clavier.Get().Text;
@@ -73,7 +75,7 @@ namespace TBS.Screens
 			_mapHeightMenuEntry.Text = "Height: " + _mapHeight;
 		}
 
-		void CreateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+	    private void CreateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			if (_mapName.Length <= 0)
 				return;

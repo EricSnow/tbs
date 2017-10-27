@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class Node
+    internal class Node
 	{
 		public Point Position;
 		public int Weight;
@@ -20,7 +20,7 @@ namespace TBS
 		public int Unit;
 	}
 
-	class AStar
+    internal class AStar
 	{
 		private Node[,] _searchNodes;
 		private readonly int _levelWidth;
@@ -149,7 +149,7 @@ namespace TBS
 			return finalPath;
 		}
 
-		public List<Node> FindPath(Point startPoint, Point endPoint, int initialDistance = 0, bool friendly = true, bool ennemy = false)
+		public List<Node> FindPath(Point startPoint, Point endPoint, int initialDistance = 0, bool friendly = true, bool enemy = false)
 		{
 			if (startPoint == endPoint)
 				return null;
@@ -170,7 +170,7 @@ namespace TBS
 					break;
 				if (currentNode == endNode)
 					return FindFinalPath(startNode, endNode);
-				if ((!currentNode.Occupied || ennemy) && (!currentNode.Friendly || friendly))
+				if ((!currentNode.Occupied || enemy) && (!currentNode.Friendly || friendly))
 					foreach (var neighbor in currentNode.Neighbors)
 					{
 						if (neighbor == null || neighbor.Weight < 0)

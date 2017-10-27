@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace TBS.Settings
+namespace TBS.Windows.Settings
 {
 	public static class Serializer
 	{

@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
-using TBS.Screens;
+using TBS.Windows.Screens;
 
-namespace TBS
+namespace TBS.Windows
 {
 	public class GameStateManagementGame : Game
 	{
@@ -11,7 +11,7 @@ namespace TBS
 
 		// By preloading any assets used by UI rendering, we avoid framerate glitches
 		// when they suddenly need to be loaded in the middle of a menu transition.
-		static readonly string[] PreloadAssets =
+	    private static readonly string[] preloadAssets =
         {
             "Menu/Gradient"
         };
@@ -62,7 +62,7 @@ namespace TBS
 		/// </summary>
 		protected override void LoadContent()
 		{
-			foreach (var asset in PreloadAssets)
+			foreach (var asset in preloadAssets)
 			{
 				Content.Load<object>(asset);
 			}

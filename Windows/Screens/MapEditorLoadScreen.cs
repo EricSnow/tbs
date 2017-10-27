@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
-	class MapEditorLoadScreen : MenuScreen
+    internal class MapEditorLoadScreen : MenuScreen
 	{
-		readonly MenuEntry _mapMenuEntry;
+	    private readonly MenuEntry _mapMenuEntry;
 
-		static List<string> _maps;
-		static int _currentMap;
+	    private static List<string> _maps;
+	    private static int _currentMap;
 
 		public MapEditorLoadScreen()
 			: base("Load map")
@@ -38,18 +38,19 @@ namespace TBS.Screens
 			MenuEntries.Add(back);
 		}
 
-		void MapMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+	    private void MapMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			_currentMap = (_currentMap + 1) % _maps.Count;
 			SetMenuEntryText();
 		}
-		void LoadMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+
+	    private void LoadMenuEntrySelected(object sender, PlayerIndexEventArgs e)
 		{
 			LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
 							   new MapEditorScreen(_maps[_currentMap]));
 		}
 
-		void SetMenuEntryText()
+	    private void SetMenuEntryText()
 		{
 			_mapMenuEntry.Text = "Map: " + _maps[_currentMap];
 		}
@@ -62,7 +63,7 @@ namespace TBS.Screens
 			ScreenManager.AddScreen(confirmExitMessageBox, e.PlayerIndex);
 		}
 
-		void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
+	    private void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
 		{
 			File.Delete("Content/Maps/" + _maps[_currentMap] + ".txt");
 			_maps.RemoveAt(_currentMap);

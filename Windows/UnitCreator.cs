@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Xna.Framework;
-
 using ssTuple = System.Tuple<string, string>;
 using iiTuple = System.Tuple<int, int>;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class UnitCreator
+    internal class UnitCreator
 	{
-		private static readonly Dictionary<string, XElement> Units = new Dictionary<string, XElement>();
-		private static readonly Dictionary<ssTuple, iiTuple> DamageChart = new Dictionary<ssTuple, iiTuple>();
+		private static readonly Dictionary<string, XElement> units = new Dictionary<string, XElement>();
+		private static readonly Dictionary<ssTuple, iiTuple> damageChart = new Dictionary<ssTuple, iiTuple>();
 
 		public static void Initialize()
 		{
@@ -22,11 +21,11 @@ namespace TBS
 				throw new Exception("Error in units XML file. No <Units> root.");
 
 			var units = root.Elements();
-			Units.Clear();
+			UnitCreator.units.Clear();
 			foreach (var u in units)
-				Units.Add(u.Attribute("Name").Value, u);
+				UnitCreator.units.Add(u.Attribute("Name").Value, u);
 
-			DamageChart.Clear();
+			damageChart.Clear();
 			var info = new[] { "Infantry", "Mech", "Bike", "Recon", "Flare", "Anti-Air", "Tank", "Medium Tank", "War Tank", "Artillery", "Anti-Tank", "Rockets", "Missiles", "Rig", "Fighter", "Bomber", "Seaplane", "Duster", "Battle Copter", "Transport Copter", "Gunboat", "Cruiser", "Submarine", "Carrier", "Battleship", "Lander" };
 			var data = new[]
 			{
@@ -59,12 +58,12 @@ namespace TBS
 			};
 			for (var atk = 0; atk < info.Length; ++atk)
 				for (var def = 0; def < info.Length; ++def)
-					DamageChart.Add(new ssTuple(info[atk], info[def]), new iiTuple(data[atk][def * 2], data[atk][def * 2 + 1]));
+					damageChart.Add(new ssTuple(info[atk], info[def]), new iiTuple(data[atk][def * 2], data[atk][def * 2 + 1]));
 		}
 
 		public static Dictionary<string, int> GetPrices(string building)
 		{
-			return Units
+			return units
 				.Where(u => u.Value.Attribute("Building").Value == building)
 				.ToDictionary(
 					u => u.Key,
@@ -73,22 +72,22 @@ namespace TBS
 
 		public static Tuple<int, int> Damage(Unit u1, Unit u2)
 		{
-			return DamageChart[new ssTuple(u1.Type, u2.Type)];
+			return damageChart[new ssTuple(u1.Type, u2.Type)];
 		}
 
 		public static int Price(string type)
 		{
-			if (!Units.ContainsKey(type))
+			if (!units.ContainsKey(type))
 				return -1;
-			return Convert.ToInt32(Units[type].Attribute("Price").Value);
+			return Convert.ToInt32(units[type].Attribute("Price").Value);
 		}
 
 		public static Unit Unit(string type, Player player, Vector2 position, bool pay = false)
 		{
-			if (!Units.ContainsKey(type))
+			if (!units.ContainsKey(type))
 				return null;
 
-			var u = Units[type];
+			var u = units[type];
 			var price = Convert.ToInt32(u.Attribute("Price").Value);
 
 			if (pay)
@@ -110,14 +109,14 @@ namespace TBS
 				Convert.ToInt32(u.Attribute("AttackRangeMin").Value),
 				Convert.ToInt32(u.Attribute("AttackRangeMax").Value),
 				Convert.ToInt32(u.Attribute("Gas").Value),
-				(Unit.MoveType)Enum.Parse(typeof(Unit.MoveType), u.Attribute("MovementType").Value, true),
-				(Unit.UnitType)Enum.Parse(typeof(Unit.UnitType), u.Attribute("UnitType").Value, true),
+				(MoveType)Enum.Parse(typeof(MoveType), u.Attribute("MovementType").Value, true),
+				(UnitType)Enum.Parse(typeof(UnitType), u.Attribute("UnitType").Value, true),
 				u.Attribute("MainWeapon").Value == ""
-					? TBS.Unit.Weapon.None
-					: (Unit.Weapon)Enum.Parse(typeof(Unit.Weapon), u.Attribute("MainWeapon").Value, true),
+					? Windows.Weapon.None
+					: (Weapon)Enum.Parse(typeof(Weapon), u.Attribute("MainWeapon").Value, true),
 				u.Attribute("SecondaryWeapon").Value == ""
-					? TBS.Unit.Weapon.None
-					: (Unit.Weapon)Enum.Parse(typeof(Unit.Weapon), u.Attribute("SecondaryWeapon").Value, true),
+					? Windows.Weapon.None
+					: (Weapon)Enum.Parse(typeof(Weapon), u.Attribute("SecondaryWeapon").Value, true),
 				u.Attribute("Building").Value);
 		}
 	}

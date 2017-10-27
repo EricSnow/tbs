@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TBS.Settings
+namespace TBS.Windows.Settings
 {
 	[Serializable]
 	public abstract class SettingsBase

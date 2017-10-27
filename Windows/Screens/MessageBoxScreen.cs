@@ -1,32 +1,21 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TBS.ScreenManager;
+using TBS.Windows.ScreenManager;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
     /// <summary>
     /// A popup message box screen, used to display "are you sure?"
     /// confirmation messages.
     /// </summary>
-    class MessageBoxScreen : GameScreen
+    internal class MessageBoxScreen : GameScreen
     {
-        #region Fields
-
-	    readonly string _message;
-        Texture2D _gradientTexture;
-
-        #endregion
-
-        #region Events
+        private readonly string _message;
+        private Texture2D _gradientTexture;
 
         public event EventHandler<PlayerIndexEventArgs> Accepted;
         public event EventHandler<PlayerIndexEventArgs> Cancelled;
-
-        #endregion
-
-        #region Initialization
-
 
         /// <summary>
         /// Constructor automatically includes the standard "A=ok, B=cancel"
@@ -69,12 +58,6 @@ namespace TBS.Screens
 			_gradientTexture = ScreenManager.Game.Content.Load<Texture2D>("Menu/Gradient");
         }
 
-
-        #endregion
-
-        #region Handle Input
-
-
         /// <summary>
         /// Responds to user input, accepting or cancelling the message box.
         /// </summary>
@@ -104,12 +87,6 @@ namespace TBS.Screens
                 ExitScreen();
             }
         }
-
-
-        #endregion
-
-        #region Draw
-
 
         /// <summary>
         /// Draws the message box.
@@ -150,8 +127,5 @@ namespace TBS.Screens
 
             spriteBatch.End();
         }
-
-
-        #endregion
     }
 }

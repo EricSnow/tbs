@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class Player
+    internal class Player
 	{
 		public int Number { get; protected set; }
-		public bool IsAI { get; protected set; }
+		public bool IsAi { get; protected set; }
 		public int Version { get; protected set; }
 		public int Money { get; set; }
 		public Building Headquarter { get; set; }
@@ -16,7 +16,7 @@ namespace TBS
 		public Player(int number, int version, int money = 0)
 		{
 			Number = number;
-			IsAI = false;
+			IsAi = false;
 			Version = version;
 			Money = money;
 			Buildings = new List<Building>();

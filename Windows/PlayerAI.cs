@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class PlayerAI : Player
+    internal class PlayerAi : Player
 	{
-		public PlayerAI(int number, int version, int money = 0)
+		public PlayerAi(int number, int version, int money = 0)
 			: base(number, version, money)
 		{
-			IsAI = true;
+			IsAi = true;
 		}
 
 		public void Think(Terrain[,] terrain, Building[,] allBuildings, List<Unit> allUnits)
 		{
-			foreach (var b in Buildings.Where(n => n.Type != "City" && n.Type != "Headquarter"))
-			{
+			//foreach (var b in Buildings.Where(n => n.Type != "City" && n.Type != "Headquarter"))
+			//{
 				
-			}
+			//}
 
 			for (var i = 0; i < Units.Count; ++i)
 			{
@@ -58,7 +58,7 @@ namespace TBS
 					}
 				}
 
-				// Ennemies in range
+				// Enemies in range
 				Unit foe = null;
 				Vector2? go = null;
 				var damage = 0;
@@ -85,7 +85,7 @@ namespace TBS
 					}
 				}
 
-				// Attack weakest ennemy in range
+				// Attack weakest enemy in range
 				if (foe != null)
 				{
 					if (go.HasValue)
@@ -132,38 +132,38 @@ namespace TBS
 					}
 				}
 
-				// Move closer to ennemy base if possible
-				Building ennemyBase = null;
-				Point? ennemyBasePos = null;
+				// Move closer to enemy base if possible
+				Building enemyBase = null;
+				Point? enemyBasePos = null;
 				for (var y = 0; y < allBuildings.GetLength(0); ++y)
 					for (var x = 0; x < allBuildings.GetLength(1); ++x)
 						if (allBuildings[y, x] != null
 							&& allBuildings[y, x].Player != this
 							&& allBuildings[y, x].Type == "Headquarter")
 						{
-							ennemyBasePos = new Point(x, y);
-							ennemyBase = allBuildings[y, x];
+							enemyBasePos = new Point(x, y);
+							enemyBase = allBuildings[y, x];
 							break;
 						}
 
-				// If the ennemy hasn't been beaten yet
-				if (ennemyBase != null)
+				// If the enemy hasn't been beaten yet
+				if (enemyBase != null)
 				{
-					var dist = Math.Abs(u.Position.X - ennemyBasePos.Value.X) + Math.Abs(u.Position.Y - ennemyBasePos.Value.Y);
+					var dist = Math.Abs(u.Position.X - enemyBasePos.Value.X) + Math.Abs(u.Position.Y - enemyBasePos.Value.Y);
 
 					// Move closer but not on the base itself
-					if (ennemyBase != null && dist > 1)
+					if (enemyBase != null && dist > 1)
 					{
 						var pf = new AStar(terrain, allUnits, u);
 						var nodes = pf.FindPath(
 							new Point((int)u.Position.X, (int)u.Position.Y),
-							ennemyBasePos.Value,
+							enemyBasePos.Value,
 							0, true, true);
 						while (nodes != null && nodes.Any()
 							   && (nodes.Last().DistanceTraveled > u.MovingDistance
 								   || !u.CanMove(new Vector2(nodes.Last().Position.X, nodes.Last().Position.Y), terrain, allUnits)
-								   || Math.Abs(nodes.Last().Position.X - ennemyBasePos.Value.X)
-								   + Math.Abs(nodes.Last().Position.Y - ennemyBasePos.Value.Y) < 0.1))
+								   || Math.Abs(nodes.Last().Position.X - enemyBasePos.Value.X)
+								   + Math.Abs(nodes.Last().Position.Y - enemyBasePos.Value.Y) < 0.1))
 						{
 							nodes.RemoveAt(nodes.Count - 1);
 						}
@@ -173,7 +173,7 @@ namespace TBS
 							continue;
 						}
 					}
-					else if (ennemyBase != null && dist < 0.1)
+					else if (enemyBase != null && dist < 0.1)
 					{
 						var pf = new AStar(terrain, allUnits, u);
 						var nodes = pf.FindIntermediatePath(

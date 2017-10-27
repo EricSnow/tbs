@@ -2,41 +2,25 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TBS.ScreenManager;
+using TBS.Windows.ScreenManager;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
     /// <summary>
     /// Base class for screens that contain a menu of options. The user can
     /// move up and down to select an entry, or cancel to back out of the screen.
     /// </summary>
-    abstract class MenuScreen : GameScreen
+    internal abstract class MenuScreen : GameScreen
     {
-        #region Fields
-
-        readonly List<MenuEntry> _menuEntries = new List<MenuEntry>();
-        int _selectedEntry;
-		readonly string _menuTitle;
-
-        #endregion
-
-        #region Properties
-
+        private readonly List<MenuEntry> _menuEntries = new List<MenuEntry>();
+        private int _selectedEntry;
+        private readonly string _menuTitle;
 
         /// <summary>
         /// Gets the list of menu entries, so derived classes can add
         /// or change the menu contents.
         /// </summary>
-        protected IList<MenuEntry> MenuEntries
-        {
-            get { return _menuEntries; }
-        }
-
-
-        #endregion
-
-        #region Initialization
-
+        protected IList<MenuEntry> MenuEntries => _menuEntries;
 
         /// <summary>
         /// Constructor.
@@ -57,21 +41,13 @@ namespace TBS.Screens
 				OnFocusEntry(0, 0);
 	    }
 
-
-        #endregion
-
-        #region Handle Input
-
-
         /// <summary>
         /// Responds to user input, changing the selected entry and accepting
         /// or cancelling the menu.
         /// </summary>
         public override void HandleInput(InputState input)
 		{
-			PlayerIndex playerIndex;
-
-            // Move to the previous menu entry?
+		    // Move to the previous menu entry?
             if (input.IsMenuUp(ControllingPlayer))
 			{
 				OnUnfocusEntry(_selectedEntry, 0);
@@ -100,7 +76,7 @@ namespace TBS.Screens
             // If we pass a null controlling player, the InputState helper returns to
             // us which player actually provided the input. We pass that through to
             // OnSelectEntry and OnCancel, so they can tell which player triggered them.
-            if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
+            if (input.IsMenuSelect(ControllingPlayer, out var playerIndex))
             {
                 OnSelectEntry(_selectedEntry, playerIndex);
             }
@@ -144,12 +120,6 @@ namespace TBS.Screens
         {
             OnCancel(e.PlayerIndex);
         }
-
-
-        #endregion
-
-        #region Update and Draw
-
 
         /// <summary>
         /// Allows the screen the chance to position the menu entries. By default
@@ -240,8 +210,5 @@ namespace TBS.Screens
 
             spriteBatch.End();
         }
-
-
-        #endregion
     }
 }

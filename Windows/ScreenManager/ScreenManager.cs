@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
-namespace TBS.ScreenManager
+namespace TBS.Windows.ScreenManager
 {
     /// <summary>
     /// The screen manager is a component which manages one or more GameScreen
@@ -16,37 +16,29 @@ namespace TBS.ScreenManager
     /// </summary>
     public class ScreenManager : DrawableGameComponent
     {
-	    readonly List<GameScreen> _screens = new List<GameScreen>();
-		readonly List<GameScreen> _screensToUpdate = new List<GameScreen>();
+        private readonly List<GameScreen> _screens = new List<GameScreen>();
+        private readonly List<GameScreen> _screensToUpdate = new List<GameScreen>();
 
-	    readonly InputState _input = new InputState();
+        private readonly InputState _input = new InputState();
 
-        SpriteBatch _spriteBatch;
-        SpriteFont _font;
-        Texture2D _blankTexture;
+        private SpriteBatch _spriteBatch;
+        private SpriteFont _font;
+        private Texture2D _blankTexture;
 
-        bool _isInitialized;
-        bool _traceEnabled;
+        private bool _isInitialized;
+        private bool _traceEnabled;
 
         /// <summary>
         /// A default SpriteBatch shared by all the screens. This saves
         /// each screen having to bother creating their own local instance.
         /// </summary>
-        public SpriteBatch SpriteBatch
-        {
-            get { return _spriteBatch; }
-        }
-
+        public SpriteBatch SpriteBatch => _spriteBatch;
 
         /// <summary>
         /// A default font shared by all the screens. This saves
         /// each screen having to bother loading their own local copy.
         /// </summary>
-        public SpriteFont Font
-        {
-            get { return _font; }
-        }
-
+        public SpriteFont Font => _font;
 
         /// <summary>
         /// If true, the manager prints out a list of all the screens
@@ -55,8 +47,8 @@ namespace TBS.ScreenManager
         /// </summary>
         public bool TraceEnabled
         {
-            get { return _traceEnabled; }
-            set { _traceEnabled = value; }
+            get => _traceEnabled;
+            set => _traceEnabled = value;
         }
 
         /// <summary>
@@ -95,7 +87,7 @@ namespace TBS.ScreenManager
             _blankTexture = content.Load<Texture2D>("Menu/Blank");
 
             // Tell each of the screens to load their content.
-            foreach (GameScreen screen in _screens)
+            foreach (var screen in _screens)
             {
                 screen.LoadContent();
             }
@@ -108,7 +100,7 @@ namespace TBS.ScreenManager
         protected override void UnloadContent()
         {
             // Tell each of the screens to unload their content.
-            foreach (GameScreen screen in _screens)
+            foreach (var screen in _screens)
             {
                 screen.UnloadContent();
             }
@@ -121,24 +113,24 @@ namespace TBS.ScreenManager
         {
             // Read the keyboard and gamepad.
 			_input.Update();
-			Souris.Get().Update(Mouse.GetState());
+			GameMouse.Get().Update(Mouse.GetState());
 			Clavier.Get().Update(Keyboard.GetState());
 
             // Make a copy of the master screen list, to avoid confusion if
             // the process of updating one screen adds or removes others.
             _screensToUpdate.Clear();
 
-            foreach (GameScreen screen in _screens)
+            foreach (var screen in _screens)
                 _screensToUpdate.Add(screen);
 
-            bool otherScreenHasFocus = !Game.IsActive;
-            bool coveredByOtherScreen = false;
+            var otherScreenHasFocus = !Game.IsActive;
+            var coveredByOtherScreen = false;
 
             // Loop as long as there are screens waiting to be updated.
             while (_screensToUpdate.Count > 0)
             {
                 // Pop the topmost screen off the waiting list.
-                GameScreen screen = _screensToUpdate[_screensToUpdate.Count - 1];
+                var screen = _screensToUpdate[_screensToUpdate.Count - 1];
 
                 _screensToUpdate.RemoveAt(_screensToUpdate.Count - 1);
 
@@ -173,7 +165,7 @@ namespace TBS.ScreenManager
         /// <summary>
         /// Prints a list of all the screens, for debugging.
         /// </summary>
-        void TraceScreens()
+        private void TraceScreens()
         {
 			Debug.WriteLine(string.Join(", ", _screens.Select(screen => screen.GetType().Name).ToArray()));
         }
@@ -184,7 +176,7 @@ namespace TBS.ScreenManager
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            foreach (GameScreen screen in _screens)
+            foreach (var screen in _screens)
             {
                 if (screen.ScreenState == ScreenState.Hidden)
                     continue;
@@ -255,7 +247,7 @@ namespace TBS.ScreenManager
         /// </summary>
         public void FadeBackBufferToBlack(float alpha)
         {
-            Viewport viewport = GraphicsDevice.Viewport;
+            var viewport = GraphicsDevice.Viewport;
 
             _spriteBatch.Begin();
 

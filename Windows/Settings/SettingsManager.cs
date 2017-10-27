@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace TBS.Settings
+namespace TBS.Windows.Settings
 {
 	public class SettingsManager
 	{
-		const string Extension = ".xml";
+	    private const string extension = ".xml";
 		public string Directory { get; protected set; }
 
 		public SettingsManager(string directory = "Content/Settings/")
@@ -28,7 +28,7 @@ namespace TBS.Settings
 				return Serializer.Read<T>(
 					Directory +
 					name +
-					Extension);
+					extension);
 			}
 			catch (Exception)
 			{
@@ -45,7 +45,7 @@ namespace TBS.Settings
 
 		public void Save<T>(T o, string name)
 		{
-			Serializer.Write(o, Directory + name + Extension);
+			Serializer.Write(o, Directory + name + extension);
 		}
 	}
 }

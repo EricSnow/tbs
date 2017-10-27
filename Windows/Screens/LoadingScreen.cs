@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Xna.Framework;
-using TBS.ScreenManager;
+using TBS.Windows.ScreenManager;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
     /// <summary>
     /// The loading screen coordinates transitions between the menu system and the
@@ -18,11 +18,11 @@ namespace TBS.Screens
     ///   next screen, which may take a long time to load its data. The loading
     ///   screen will be the only thing displayed while this load is taking place.
     /// </summary>
-    class LoadingScreen : GameScreen
+    internal class LoadingScreen : GameScreen
     {
-	    readonly bool _loadingIsSlow;
-        bool _otherScreensAreGone;
-	    readonly GameScreen[] _screensToLoad;
+        private readonly bool _loadingIsSlow;
+        private bool _otherScreensAreGone;
+        private readonly GameScreen[] _screensToLoad;
 
         /// <summary>
         /// The constructor is private: loading screens should
@@ -69,7 +69,7 @@ namespace TBS.Screens
             {
                 ScreenManager.RemoveScreen(this);
 
-                foreach (GameScreen screen in _screensToLoad)
+                foreach (var screen in _screensToLoad)
                 {
                     if (screen != null)
                     {

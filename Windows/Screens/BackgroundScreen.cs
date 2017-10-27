@@ -2,26 +2,19 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using TBS.ScreenManager;
+using TBS.Windows.ScreenManager;
 
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
     /// <summary>
     /// The background screen sits behind all the other menu screens.
     /// It draws a background image that remains fixed in place regardless
     /// of whatever transitions the screens on top of it may be doing.
     /// </summary>
-    class BackgroundScreen : GameScreen
+    internal class BackgroundScreen : GameScreen
     {
-        #region Fields
-
-        ContentManager _content;
-        Texture2D _backgroundTexture;
-
-        #endregion
-
-        #region Initialization
-
+        private ContentManager _content;
+        private Texture2D _backgroundTexture;
 
         /// <summary>
         /// Constructor.
@@ -57,12 +50,6 @@ namespace TBS.Screens
             _content.Unload();
         }
 
-
-        #endregion
-
-        #region Update and Draw
-
-
         /// <summary>
         /// Updates the background screen. Unlike most screens, this should not
         /// transition off even if it has been covered by another screen: it is
@@ -70,8 +57,7 @@ namespace TBS.Screens
         /// coveredByOtherScreen parameter to false in order to stop the base
         /// Update method wanting to transition off.
         /// </summary>
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                                       bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
         }
@@ -91,8 +77,5 @@ namespace TBS.Screens
 				new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
             spriteBatch.End();
         }
-
-
-        #endregion
     }
 }

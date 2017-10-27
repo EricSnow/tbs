@@ -1,30 +1,30 @@
 ﻿using System.Collections.Generic;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class Terrain
+    internal class Terrain
 	{
 		public string Type { get; private set; }
 		public int Defense { get; private set; }
 		public bool Hiding { get; private set; }
 		public Sprite Texture { get; set; }
-		public Dictionary<Unit.MoveType, int> MoveCosts { get; private set; }
+		public Dictionary<MoveType, int> MoveCosts { get; private set; }
 
 		public Terrain(string type, bool hiding, int defense, params int[] costs)
 		{
 			Type = type;
 			Defense = defense;
 			Hiding = hiding;
-			MoveCosts = new Dictionary<Unit.MoveType, int>
+			MoveCosts = new Dictionary<MoveType, int>
 			{
-				{ Unit.MoveType.Infantry, costs[0] },
-				{ Unit.MoveType.Bazooka, costs[1] },
-				{ Unit.MoveType.TireA, costs[2] },
-				{ Unit.MoveType.TireB, costs[3] },
-				{ Unit.MoveType.Tank, costs[4] },
-				{ Unit.MoveType.Air, costs[5] },
-				{ Unit.MoveType.Ship, costs[6] },
-				{ Unit.MoveType.Transport, costs[7] }
+				{ MoveType.Infantry, costs[0] },
+				{ MoveType.Bazooka, costs[1] },
+				{ MoveType.TireA, costs[2] },
+				{ MoveType.TireB, costs[3] },
+				{ MoveType.Tank, costs[4] },
+				{ MoveType.Air, costs[5] },
+				{ MoveType.Ship, costs[6] },
+				{ MoveType.Transport, costs[7] }
 			};
 		}
 

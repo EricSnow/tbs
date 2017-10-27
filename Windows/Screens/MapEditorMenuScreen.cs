@@ -1,6 +1,6 @@
-namespace TBS.Screens
+namespace TBS.Windows.Screens
 {
-	class MapEditorMenuScreen : MenuScreen
+    internal class MapEditorMenuScreen : MenuScreen
 	{
 		public MapEditorMenuScreen()
 			: base("Map Editor")

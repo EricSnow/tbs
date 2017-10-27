@@ -3,49 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace TBS
+namespace TBS.Windows
 {
-	class Unit : Drawable
+    /// <summary>
+    /// Units in the game.
+    /// </summary>
+    /// <seealso cref="TBS.Windows.Drawable" />
+    internal class Unit : Drawable
 	{
-		public enum MoveType
-		{
-			Infantry,
-			Bazooka,
-			TireA,
-			TireB,
-			Tank,
-			Transport,
-			Ship,
-			Air
-		}
-		public enum UnitType
-		{
-			Infantry,
-			Vehicle,
-			Ship,
-			Sub,
-			Helicopter,
-			Air
-		}
-		public enum Weapon
-		{
-			None,
-			MachineGun,
-			Bazooka,
-			VulcanCannon,
-			Cannon,
-			Rockets,
-			TankGun,
-			HeavyTankGun,
-			MegaGun,
-			AntiShipMissiles,
-			Torpedo,
-			AntiAirGun,
-			AntiAirMissiles,
-			AirToGroundMissile,
-			Bomb
-		}
-
 		public string Type { get; private set; }
 		public int MovingDistance { get; private set; }
 		public int VisionDistance { get; private set; }
@@ -66,7 +31,26 @@ namespace TBS
 		public Building Capturing { get; private set; }
 		public string Building { get; private set; }
 
-		public Unit(string type, Player player, Vector2 position, int movingDistance,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Unit"/> class.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="player">The player.</param>
+        /// <param name="position">The position.</param>
+        /// <param name="movingDistance">The moving distance.</param>
+        /// <param name="visionDistance">The vision distance.</param>
+        /// <param name="canCapture">if set to <c>true</c> [can capture].</param>
+        /// <param name="price">The price.</param>
+        /// <param name="ammo">The ammo.</param>
+        /// <param name="rangeMin">The range minimum.</param>
+        /// <param name="rangeMax">The range maximum.</param>
+        /// <param name="gas">The gas.</param>
+        /// <param name="moveType">Type of the move.</param>
+        /// <param name="unitType">Type of the unit.</param>
+        /// <param name="weapon1">The first weapon.</param>
+        /// <param name="weapon2">The second weapon.</param>
+        /// <param name="building">The building.</param>
+        public Unit(string type, Player player, Vector2 position, int movingDistance,
 					int visionDistance, bool canCapture, int price, int ammo, int rangeMin,
 					int rangeMax, int gas, MoveType moveType, UnitType unitType, Weapon weapon1,
 					Weapon weapon2, string building)
@@ -93,7 +77,11 @@ namespace TBS
 			Building = building;
 		}
 
-		public void Move(Vector2 position)
+        /// <summary>
+        /// Moves the specified position.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        public void Move(Vector2 position)
 		{
 			if (Moved)
 				return;
@@ -103,7 +91,16 @@ namespace TBS
 			Moved = true;
 		}
 
-		public bool CanMove(Vector2 position, Terrain[,] terrain, List<Unit> allUnits)
+        /// <summary>
+        /// Determines whether this instance can move the specified position.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <param name="terrain">The terrain.</param>
+        /// <param name="allUnits">All units.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can move the specified position; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanMove(Vector2 position, Terrain[,] terrain, List<Unit> allUnits)
 		{
 			return !(position.X < 0 || position.Y < 0
 			    || position.X >= terrain.GetLength(1) || position.Y >= terrain.GetLength(0)
@@ -219,7 +216,7 @@ namespace TBS
 		/// <param name="other">Unit to check whether in range or not.</param>
 		/// <param name="terrain">The map.</param>
 		/// <param name="units">All units present on the map.</param>
-		/// <returns>The closest point to attack the ennemy on success, (-1,-1) if out of range.</returns>
+		/// <returns>The closest point to attack the enemy on success, (-1,-1) if out of range.</returns>
 		public Vector2? InExtandedRange(Unit other, Terrain[,] terrain, List<Unit> units)
 		{
 			// Where we want to check
@@ -248,14 +245,14 @@ namespace TBS
 					for (var iy = ymin; iy <= ymax; ++iy)
 						for (var ix = xmin; ix <= xmax; ++ix)
 						{
-							// If the ennemy is in range
+							// If the enemy is in range
 							var diff = Math.Abs(y - iy) + Math.Abs(x - ix);
 							if (diff >= RangeMin && diff <= RangeMax && ix == objX && iy == objY)
 								return new Vector2(x, y);
 						}
 				}
 
-			// The ennemy is not in range
+			// The enemy is not in range
 			return null;
 		}
 	}
