@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows", "Windows\Windows.csproj", "{8A727371-2B2A-4D6F-87E2-215B1A032E38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "Content\Content.csproj", "{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,14 +20,6 @@ Global
 		{8A727371-2B2A-4D6F-87E2-215B1A032E38}.Release|Any CPU.ActiveCfg = Release|x86
 		{8A727371-2B2A-4D6F-87E2-215B1A032E38}.Release|x86.ActiveCfg = Release|x86
 		{8A727371-2B2A-4D6F-87E2-215B1A032E38}.Release|x86.Build.0 = Release|x86
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Debug|x86.Build.0 = Debug|Any CPU
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Release|x86.ActiveCfg = Release|Any CPU
-		{70AB4C70-9AB1-404E-8BCA-3DBC0E93BBA6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

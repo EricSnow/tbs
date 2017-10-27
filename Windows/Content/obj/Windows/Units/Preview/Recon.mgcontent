@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Code/tbs_mono3.6/Windows/Content/Units/Preview/Recon.png</SourceFile>
-  <SourceTime>2017-10-24T11:25:58.2418438-07:00</SourceTime>
-  <DestFile>C:/Code/tbs_mono3.6/Windows/Content/bin/Windows/Units/Preview/Recon.xnb</DestFile>
-  <DestTime>2017-10-26T16:35:46.1936239-07:00</DestTime>
+  <SourceFile>C:/CODE/tbs_mono3.6/Windows/Content/Units/Preview/Recon.png</SourceFile>
+  <SourceTime>2017-10-26T17:01:04.7007929-07:00</SourceTime>
+  <DestFile>C:/CODE/tbs_mono3.6/Windows/Content/bin/Windows/Units/Preview/Recon.xnb</DestFile>
+  <DestTime>2017-10-26T17:17:35.2011441-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
